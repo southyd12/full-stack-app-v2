@@ -1,0 +1,30 @@
+{
+  "name": "full-stack-app-v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install:client": "npm --prefix client ci",
+    "install:server": "npm --prefix server ci",
+    "install:both": "concurrently --kill-others-on-fail  \"npm run install:client\" \"npm run install:server\"",
+    "uninstall:client": "rm -rf client/node_modules",
+    "uninstall:server": "rm -rf server/node_modules",
+    "uninstall:both": "concurrently --kill-others-on-fail  \"npm run uninstall:client\" \"npm run uninstall:server\"",
+    "start:dev:client": "npm --prefix client run dev",
+    "start:dev:server": "npm --prefix server run start:dev",
+    "start:dev": "concurrently --kill-others-on-fail  \"npm run start:dev:client\" \"npm run start:dev:server\"",
+    "build:client": "npm --prefix client run build",
+    "clean:client": "rm -rf ./client/dist",
+    "start:server": "npm --prefix server run start",
+    "start:local": "npm run clean:client && npm run uninstall:both && npm run install:both && npm run build:client && npm run start:server",
+    "start": "npm run start:server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.0.1",
+    "cross-env": "^7.0.3"
+  }
+}
